@@ -31,7 +31,7 @@ char* readImage(FILE* fd, size_t size) {
 }
 
 int writeOut(char* filename, char* header, char* data, size_t dataSize) {
-    FILE* fd = fopen("out.bmp", "wb");
+    FILE* fd = fopen(filename, "wb");
     if (fd == NULL) {
         printf("Error creating out file\n");
         return 1;
@@ -67,12 +67,6 @@ int encode(char* vesselName) {
     char* payload = malloc(MAX_PAYLOAD_SIZE);
     printf("Payload: ");
     fgets(payload, MAX_PAYLOAD_SIZE, stdin);
-
-    printf("Payload: ");
-    for (size_t i = 0; i < strlen(payload); i++) {
-        printf("%02x", payload[i]);
-    }
-    printf("\n");
 
     size_t payloadSize = strlen(payload)+1;
     size_t imgOffset = 0;
